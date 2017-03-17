@@ -1,0 +1,20 @@
+Termíny:
+	do 26.03.2016 - návrh funkcionality, tried, GUI
+	do 02.04.2016 - implementácia návrhu a hlásenie problémov, jednotkové testy
+	do 09.04.2016 - optimalizácia a testovanie
+	do 16.04.2016 - finalizácia projektu a písanie dokumentácie
+	   24.04.2016 - odovzdanie
+
+Úlohy:
+	Radovan Sroka - xsroka00 - koordinácia práce, finalizácia projektu
+	Tomáš Sýkora - xsykor25- návrh a tvorba GUI
+	Michal Cyprián - xmochn00 - tvorba matematickej knižnice a dokumentácie
+	Jan Mochnak - xcypri01 - návrh testov a testovanie
+
+Komunikacné kanály:
+	Sócialne siete
+	Github issues
+
+Verzovací systém:
+	GIT
+	https://github.com/radosroka/IVS-calculator
