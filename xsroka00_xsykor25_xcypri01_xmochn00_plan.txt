@@ -1,20 +1,20 @@
-TermÌny:
-	do 26.03.2016 - n·vrh funkcionality, tried, GUI
-	do 02.04.2016 - implement·cia n·vrhu a hl·senie problÈmov, jednotkovÈ testy
-	do 09.04.2016 - optimaliz·cia a testovanie
-	do 16.04.2016 - finaliz·cia projektu a pÌsanie dokument·cie
+Term√≠ny:
+	do 26.03.2016 - n√°vrh funkcionality, tried, GUI
+	do 02.04.2016 - implement√°cia n√°vrhu a hl√°senie probl√©mov, jednotkov√© testy
+	do 09.04.2016 - optimaliz√°cia a testovanie
+	do 16.04.2016 - finaliz√°cia projektu a p√≠sanie dokument√°cie
 	   24.04.2016 - odovzdanie
 
-⁄lohy:
-	Radovan Sroka - xsroka00 - koordin·cia pr·ce, finaliz·cia projektu
-	Tom·ö S˝kora - xsykor25- n·vrh a tvorba GUI
-	Michal Cypri·n - xmochn00 - tvorba matematickej kniûnice a dokument·cie
-	Jan Mochnak - xcypri01 - n·vrh testov a testovanie
+√ölohy:
+	Radovan Sroka - xsroka00 - koordin√°cia pr√°ce, finaliz√°cia projektu
+	Tom√°≈° S√Ωkora - xsykor25- n√°vrh a tvorba GUI
+	Michal Cypri√°n - xmochn00 - tvorba matematickej kni≈ænice a dokument√°cie
+	Jan Mochnak - xcypri01 - n√°vrh testov a testovanie
 
-KomunikacnÈ kan·ly:
-	SÛcialne siete
+Komunikacn√© kan√°ly:
+	Soci√°lne siete
 	Github issues
 
-VerzovacÌ systÈm:
+Verzovac√≠ syst√©m:
 	GIT
 	https://github.com/radosroka/IVS-calculator
