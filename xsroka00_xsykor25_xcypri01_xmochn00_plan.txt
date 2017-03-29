@@ -18,3 +18,8 @@ Komunikacné kanály:
 Verzovací systém:
 	GIT
 	https://github.com/radosroka/IVS-calculator
+
+Preklad:
+    export GOPATH=[Cesta k projektu]/IVS-calculator/
+    cd [Cesta k projektu]/IVS-calculator/src
+    go build main.go
