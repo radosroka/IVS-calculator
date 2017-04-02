@@ -6,16 +6,16 @@ import "math"
 // Calculator defines Operations of calculator
 type Calculator interface {
 	Plus(float64)
-	Minus(Calculator, float64)
-	Multiply(Calculator, float64)
-	Divide(Calculator, float64)
-	Factorial(Calculator, float64)
-	Power(Calculator, float64)
-	NRoot(Calculator, float64)
-	Mod(Calculator, float64)
-	ClearAll(Calculator)
-	Execute(Calculator, float64)
-	Show(Calculator)
+	Minus(float64)
+	Multiply(float64)
+	Divide(float64)
+	Factorial(float64)
+	Power(float64)
+	NRoot(float64)
+	Mod(float64)
+	ClearAll()
+	Execute(float64)
+	Show()
 }
 
 // Stores current Result of equation and slot for selected Operation
