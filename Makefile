@@ -12,6 +12,7 @@ qtbuild:
 
 
 build: qtbuild
+	mkdir -p bin
 	$(goexport) cd bin/ && go build ../src/main.go
 	$(goexport) cd bin/ && go build ../src/example.go
 
