@@ -5,6 +5,7 @@ all: build
 
 gtkbuild:
 	$(goexport) go get github.com/mattn/go-gtk/gtk || true
+	$(goexport) go get github.com/mattn/go-gtk/gdk || true
 
 build: gtkbuild
 	mkdir -p bin
