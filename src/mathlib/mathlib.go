@@ -26,15 +26,17 @@ func Divide(first_op float64, second_op float64) (float64, error) {
 }
 
 // Argument just for OperationSlot compatibility
-// TODO int overflow
 func Factorial(first_op float64, second_op float64) (float64, error) {
-	var res int64
+	var res, k int64
 	res = 1
 	if float64(int64(first_op)) != first_op {
 		return 0, errors.New("Factorial of non integer value can't be calculated")
 	}
+	if first_op > 25 {
+		return 0, errors.New("Integer overflow")
+	}
 	input := int64(first_op)
-	for k := 1; k <= input; k++ {
+	for k = 1; k <= input; k++ {
 		res *= k
 	}
 	return float64(res), nil

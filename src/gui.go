@@ -38,7 +38,7 @@ func executeOperation(c *calculator.SimpleCalc, val float64) {
 	c.Execute(val)
 	result, err := c.GetResult()
 	if err != nil {
-		display.SetText(err.Error())
+		display.SetText("Error: " + err.Error())
 	} else {
 		display.SetText(strconv.FormatFloat(result, 'g', 6, 64))
 	}
