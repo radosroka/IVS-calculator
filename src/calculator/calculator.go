@@ -10,33 +10,47 @@ type Calculator interface {
 	ClearAll()
 	Execute(float64)
 	Show()
+	GetResult()
 }
 
-type Result struct {
-	Value    float64
-	Err      error
-	Negative bool
+type result struct {
+	value float64
+	err   error
 }
 
-// Stores current Result of equation and slot for selected Operation
+// Stores current result of equation and slot for selected operation
 type SimpleCalc struct {
-	Result        Result
+	result        result
 	OperationSlot func(float64, float64) (float64, error)
 }
 
+// SimpleCalc constructor
+func NewCalc() *SimpleCalc {
+	c := new(SimpleCalc)
+	c.result = result{
+		value: 0,
+		err:   nil,
+	}
+	c.OperationSlot = mathlib.Plus
+	return c
+}
+
 // Reset calculator to initial state
-func (ca *SimpleCalc) ClearAll() {
-	ca.Result.Value = 0
-	ca.Result.Negative = false
-	ca.OperationSlot = mathlib.Plus
+func (c *SimpleCalc) ClearAll() {
+	c.result.value = 0
+	c.OperationSlot = mathlib.Plus
 }
 
 // Executes selected Operation
-func (ca *SimpleCalc) Execute(operand float64) {
-	ca.Result.Value, ca.Result.Err = ca.OperationSlot(ca.Result.Value, operand)
+func (c *SimpleCalc) Execute(operand float64) {
+	c.result.value, c.result.err = c.OperationSlot(c.result.value, operand)
 }
 
-// Shows Result
-func (calc *SimpleCalc) Show() {
-	fmt.Println(calc.Result)
+// Shows result
+func (c *SimpleCalc) Show() {
+	fmt.Println(c.result)
+}
+
+func (c *SimpleCalc) GetResult() (float64, error) {
+	return c.result.value, c.result.err
 }

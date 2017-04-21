@@ -9,16 +9,10 @@ gtkbuild:
 
 build: gtkbuild
 	mkdir -p bin
-	$(goexport) cd bin/ && go build ../src/main.go
 	$(goexport) cd bin/ && go build ../src/gui.go
 
-run-calc:
-	bin/main
-
-run-gui:
+run:
 	bin/gui
-
-run: run-calc run-gui
 
 clean:
 	go clean
