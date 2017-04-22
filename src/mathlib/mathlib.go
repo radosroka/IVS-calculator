@@ -29,8 +29,8 @@ func Divide(first_op float64, second_op float64) (float64, error) {
 func Factorial(first_op float64, second_op float64) (float64, error) {
 	var res, k int64
 	res = 1
-	if float64(int64(first_op)) != first_op {
-		return 0, errors.New("Factorial of non integer value can't be calculated")
+	if float64(int64(first_op)) != first_op || first_op < 0 {
+		return 0, errors.New("Factorial of non integer or negative value can't be calculated")
 	}
 	if first_op > 25 {
 		return 0, errors.New("Integer overflow")

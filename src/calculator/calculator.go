@@ -38,6 +38,7 @@ func NewCalc() *SimpleCalc {
 // Reset calculator to initial state
 func (c *SimpleCalc) ClearAll() {
 	c.result.value = 0
+	c.result.err = nil
 	c.OperationSlot = mathlib.Plus
 }
 

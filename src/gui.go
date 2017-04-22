@@ -11,12 +11,14 @@ import (
 )
 
 var (
-	display   *gtk.Entry // for displaying values
-	inputMode = false
-	nums      = "789/!456x%123-^0.=+√"
-	operators = "/!x%-^+=\u221a√"
+	display       *gtk.Entry // for displaying values
+	inputMode     = false
+	nums          = "789/!456x%123-^0.=+√"
+	operators     = "/!x%-^+=\u221a√"
+	lastOperation = "+"
+	lastButton    = "."
 	// mapping operator character to function pointers
-	oparation_map = map[string]func(float64, float64) (float64, error){
+	operationMap = map[string]func(float64, float64) (float64, error){
 		"+": mathlib.Plus,
 		"-": mathlib.Minus,
 		"x": mathlib.Multiply,
@@ -39,6 +41,8 @@ func executeOperation(c *calculator.SimpleCalc, val float64) {
 	result, err := c.GetResult()
 	if err != nil {
 		display.SetText("Error: " + err.Error())
+		c.ClearAll()
+		lastOperation = "+"
 	} else {
 		display.SetText(strconv.FormatFloat(result, 'g', 6, 64))
 	}
@@ -46,31 +50,74 @@ func executeOperation(c *calculator.SimpleCalc, val float64) {
 }
 
 // on button click action, returns a handler function
-func ButtonClicked(b *gtk.Button, c *calculator.SimpleCalc) func() {
+func OperatorButtonClicked(b *gtk.Button, c *calculator.SimpleCalc) func() {
 	return func() {
-		if strings.Index(operators, b.GetLabel()) != -1 {
-			val, _ := strconv.ParseFloat(display.GetText(), 32)
-			executeOperation(c, val)
-			inputMode = false
-			if strings.Compare(b.GetLabel(), "=") == 0 {
-				c.ClearAll()
-			} else {
-				c.OperationSlot = oparation_map[b.GetLabel()]
-				if strings.Compare(b.GetLabel(), "!") == 0 {
-					executeOperation(c, 0)
-				}
-			}
-		} else if strings.Compare(b.GetLabel(), "AC") == 0 {
+		val, err := strconv.ParseFloat(display.GetText(), 32)
+		if err != nil {
+			display.SetText("Error: Invalid input")
 			c.ClearAll()
-			display.SetText("0")
-			inputMode = false
+			lastOperation = "+"
+		}
+		if lastOperation != "!" {
+			executeOperation(c, val)
+		}
+		inputMode = false
+		if strings.Compare(b.GetLabel(), "=") == 0 {
+			c.ClearAll()
+			lastOperation = "+"
 		} else {
+			lastOperation = b.GetLabel()
+			c.OperationSlot = operationMap[lastOperation]
+		}
+	}
+}
+
+func InputButtonClicked(b *gtk.Button, c *calculator.SimpleCalc) func() {
+	return func() {
+		if lastButton != "." || strings.Compare(b.GetLabel(), ".") != 0 {
+			lastButton = b.GetLabel()
 			if inputMode {
 				display.SetText(display.GetText() + b.GetLabel())
 			} else {
 				display.SetText(b.GetLabel())
 				inputMode = true
 			}
+		}
+	}
+}
+
+func SpecialButtonClicked(b *gtk.Button, c *calculator.SimpleCalc) func() {
+	return func() {
+		if strings.Compare(b.GetLabel(), "AC") == 0 {
+			c.ClearAll()
+			lastOperation = "+"
+			display.SetText("0")
+			inputMode = false
+		} else if strings.Compare(b.GetLabel(), "+/-") == 0 {
+			content := display.GetText()
+			if string([]rune(content)[0]) == "-" {
+				content = content[1:len(content)]
+			} else {
+				content = "-" + content
+			}
+			display.SetText(content)
+		} else if strings.Compare(b.GetLabel(), "!") == 0 {
+			val, err := strconv.ParseFloat(display.GetText(), 32)
+			if err != nil {
+				display.SetText("Error: Invalid input")
+				c.ClearAll()
+				lastOperation = "+"
+			}
+			if lastOperation != "!" {
+				executeOperation(c, val)
+			}
+
+			inputMode = false
+			lastOperation = b.GetLabel()
+			c.OperationSlot = operationMap[lastOperation]
+			executeOperation(c, 0)
+			c.ClearAll()
+			lastOperation = "+"
 		}
 	}
 }
@@ -82,7 +129,7 @@ func main() {
 	window := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
 	window.SetTitle("Calculator")
 	window.SetBorderWidth(10)
-	window.SetDefaultSize(200, 200)
+	window.SetDefaultSize(300, 400)
 	window.ModifyBG(gtk.STATE_NORMAL, gdk.NewColor("grey"))
 	window.Connect("destroy", Quit, nil)
 
@@ -102,8 +149,12 @@ func main() {
 	additionalBox.SetSizeRequest(40, 40)
 	resetButton := gtk.NewButtonWithLabel("AC")
 	resetButton.SetSizeRequest(30, 30)
-	resetButton.Clicked(ButtonClicked(resetButton, calc), nil)
+	resetButton.Clicked(SpecialButtonClicked(resetButton, calc), nil)
 	vbox.Add(resetButton)
+	plusMinusButton := gtk.NewButtonWithLabel("+/-")
+	plusMinusButton.SetSizeRequest(30, 30)
+	plusMinusButton.Clicked(SpecialButtonClicked(plusMinusButton, calc), nil)
+	vbox.Add(plusMinusButton)
 
 	// Vertical box containing all buttons
 	buttons := gtk.NewVBox(false, 5)
@@ -120,7 +171,13 @@ func main() {
 				b = gtk.NewButtonWithLabel(string("\u221a"))
 				b.SetSizeRequest(35, 35)
 			}
-			b.Clicked(ButtonClicked(b, calc), nil)
+			if strings.Compare(b.GetLabel(), "!") == 0 {
+				b.Clicked(SpecialButtonClicked(b, calc), nil)
+			} else if strings.Index(operators, string(nums[i*5+j])) != -1 {
+				b.Clicked(OperatorButtonClicked(b, calc), nil)
+			} else {
+				b.Clicked(InputButtonClicked(b, calc), nil)
+			}
 			hbox.Add(b)
 		}
 		buttons.Add(hbox) // add horizonatal box to the vertical buttons box
