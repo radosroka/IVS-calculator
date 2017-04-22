@@ -1,15 +1,21 @@
 package main
 
 import (
+	"github.com/pkg/profile"
 	"fmt"
 	"os"
 	"strconv"
 	"mathlib"
+	"runtime"
+	//"time"
 )
 
 const MAX = 1000
 
 func main() {
+	runtime.SetCPUProfileRate(1000)
+	profile.Start(profile.CPUProfile, profile.ProfilePath(".")).Stop()
+
 	var array[MAX] float64
 
 	if len(os.Args) != 2 {
@@ -42,6 +48,7 @@ func main() {
   		res = ress
 	}
 
-	fmt.Printf("Deviation is -- %v", res)
+//	time.Sleep(10000000000)
 
+	fmt.Printf("Deviation is -- %v\n", res)
 }
