@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/pkg/profile"
+	"calculator"
 	"fmt"
+	"github.com/pkg/profile"
 	"os"
-	"strconv"
-	"mathlib"
 	"runtime"
+	"strconv"
 	//"time"
 )
 
@@ -16,7 +16,7 @@ func main() {
 	runtime.SetCPUProfileRate(1000)
 	profile.Start(profile.CPUProfile, profile.ProfilePath(".")).Stop()
 
-	var array[MAX] float64
+	var array [MAX]float64
 
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Bad arguments\n")
@@ -27,28 +27,28 @@ func main() {
 
 	for i := 0; i < N && i < MAX; i++ {
 		fmt.Scanf("%f", &array[i])
-//		fmt.Printf("%d\n", array[i])
+		//		fmt.Printf("%d\n", array[i])
 	}
 
 	var res float64 = 0.0
 	var mean float64 = 0.0
 
 	for i := 0; i < N && i < MAX; i++ {
-		h, _ := mathlib.Plus(float64(i), 1.0)
-		f, _ := mathlib.Divide(1.0, h)
-  		d, _ := mathlib.Minus(array[i], mean)
-  		dd, _ := mathlib.Multiply(d, f)
-  		meann, _ := mathlib.Plus(mean, dd)
-  		mean = meann
-  		c, _ := mathlib.Minus(1.0, f)
-  		x, _ := mathlib.Multiply(dd, d)
-  		y, _ := mathlib.Plus(res, x)
-  		z, _ := mathlib.Multiply(c, y)
-  		ress, _ := mathlib.NRoot(z, 2)
-  		res = ress
+		h, _ := calculator.Plus(float64(i), 1.0)
+		f, _ := calculator.Divide(1.0, h)
+		d, _ := calculator.Minus(array[i], mean)
+		dd, _ := calculator.Multiply(d, f)
+		meann, _ := calculator.Plus(mean, dd)
+		mean = meann
+		c, _ := calculator.Minus(1.0, f)
+		x, _ := calculator.Multiply(dd, d)
+		y, _ := calculator.Plus(res, x)
+		z, _ := calculator.Multiply(c, y)
+		ress, _ := calculator.NRoot(z, 2)
+		res = ress
 	}
 
-//	time.Sleep(10000000000)
+	//	time.Sleep(10000000000)
 
 	fmt.Printf("Deviation is -- %v\n", res)
 }

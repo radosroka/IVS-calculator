@@ -1,4 +1,4 @@
-package mathlib
+package calculator
 
 import (
 	"errors"
@@ -6,18 +6,23 @@ import (
 )
 
 // Implementation of mathematical operations
+
+// Return sum of two operands
 func Plus(first_op float64, second_op float64) (float64, error) {
 	return first_op + second_op, nil
 }
 
+// Return difference of two operands
 func Minus(first_op float64, second_op float64) (float64, error) {
 	return first_op - second_op, nil
 }
 
+// Return product of two operands
 func Multiply(first_op float64, second_op float64) (float64, error) {
 	return first_op * second_op, nil
 }
 
+// Return quotient of two operands
 func Divide(first_op float64, second_op float64) (float64, error) {
 	if second_op == 0 {
 		return 0, errors.New("Division by zero")
@@ -25,7 +30,8 @@ func Divide(first_op float64, second_op float64) (float64, error) {
 	return first_op / second_op, nil
 }
 
-// Argument just for OperationSlot compatibility
+// Return factorial of first operand, the second argument just for
+// compatibility with OperationSlot interface
 func Factorial(first_op float64, second_op float64) (float64, error) {
 	var res, k int64
 	res = 1
@@ -42,14 +48,19 @@ func Factorial(first_op float64, second_op float64) (float64, error) {
 	return float64(res), nil
 }
 
+// Return first operand (base) taken to the power of
+// the second_operand (exponent)
 func Power(first_op float64, second_op float64) (float64, error) {
 	return math.Pow(first_op, second_op), nil
 }
 
+// Return a number used n times (second operand) in a multiplication
+// gives first operand
 func NRoot(first_op float64, second_op float64) (float64, error) {
 	return math.Pow(first_op, 1.0/second_op), nil
 }
 
+// Return remainder of first operand divided by the second operand
 func Mod(first_op float64, second_op float64) (float64, error) {
 	return math.Mod(first_op, second_op), nil
 }

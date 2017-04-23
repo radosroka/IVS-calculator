@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>calculator - The Go Programming Language</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+
+<link rel="stylesheet" href="/lib/godoc/jquery.treeview.css">
+<script type="text/javascript">window.initFuncs = [];</script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/">The Go Programming Language</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/">Go</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="/search">
+<div id="menu">
+<a href="/doc/">Documents</a>
+<a href="/pkg/">Packages</a>
+<a href="/project/">The Project</a>
+<a href="/help/">Help</a>
+<a href="/blog/">Blog</a>
+
+<input type="text" id="search" name="q" class="inactive" value="Search" placeholder="Search">
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>Package calculator</h1>
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script type='text/javascript'>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "calculator"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+			</div>
+		</div>
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#Divide">func Divide(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Factorial">func Factorial(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Minus">func Minus(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Mod">func Mod(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Multiply">func Multiply(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#NRoot">func NRoot(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Plus">func Plus(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+				
+				<dd><a href="#Power">func Power(first_op float64, second_op float64) (float64, error)</a></dd>
+			
+			
+				
+				<dd><a href="#Calculator">type Calculator</a></dd>
+				
+				
+			
+				
+				<dd><a href="#SimpleCalc">type SimpleCalc</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewCalc">func NewCalc() *SimpleCalc</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#SimpleCalc.ClearAll">func (c *SimpleCalc) ClearAll()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#SimpleCalc.Execute">func (c *SimpleCalc) Execute(operand float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#SimpleCalc.GetResult">func (c *SimpleCalc) GetResult() (float64, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#SimpleCalc.Show">func (c *SimpleCalc) Show()</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>Package files</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/calculator/calculator.go">calculator.go</a>
+			
+				<a href="/src/calculator/mathlib.go">mathlib.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		<div id="pkg-callgraph" class="toggle" style="display: none">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Internal Call Graph section">Internal call graph ▹</h2>
+		</div> <!-- .expanded -->
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Internal Call Graph section">Internal call graph ▾</h2>
+			<p>
+			  In the call graph viewer below, each node
+			  is a function belonging to this package
+			  and its children are the functions it
+			  calls&mdash;perhaps dynamically.
+			</p>
+			<p>
+			  The root nodes are the entry points of the
+			  package: functions that may be called from
+			  outside the package.
+			  There may be non-exported or anonymous
+			  functions among them if they are called
+			  dynamically from another package.
+			</p>
+			<p>
+			  Click a node to visit that function's source code.
+			  From there you can visit its callers by
+			  clicking its declaring <code>func</code>
+			  token.
+			</p>
+			<p>
+			  Functions may be omitted if they were
+			  determined to be unreachable in the
+			  particular programs or tests that were
+			  analyzed.
+			</p>
+			<!-- Zero means show all package entry points. -->
+			<ul style="margin-left: 0.5in" id="callgraph-0" class="treeview"></ul>
+		</div>
+		</div> <!-- #pkg-callgraph -->
+
+		
+		
+		
+			
+			
+			<h2 id="Divide">func <a href="/src/calculator/mathlib.go?s=546:611#L16">Divide</a>
+				<a class="permalink" href="#Divide">&#xb6;</a>
+			</h2>
+			<pre>func Divide(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return quotient of two operands
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Factorial">func <a href="/src/calculator/mathlib.go?s=832:900#L25">Factorial</a>
+				<a class="permalink" href="#Factorial">&#xb6;</a>
+			</h2>
+			<pre>func Factorial(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return factorial of first operand, the second argument just for
+compatibility with OperationSlot interface
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Minus">func <a href="/src/calculator/mathlib.go?s=266:330#L6">Minus</a>
+				<a class="permalink" href="#Minus">&#xb6;</a>
+			</h2>
+			<pre>func Minus(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return difference of two operands
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Mod">func <a href="/src/calculator/mathlib.go?s=1722:1784#L54">Mod</a>
+				<a class="permalink" href="#Mod">&#xb6;</a>
+			</h2>
+			<pre>func Mod(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return remainder of first operand divided by the second operand
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Multiply">func <a href="/src/calculator/mathlib.go?s=404:471#L11">Multiply</a>
+				<a class="permalink" href="#Multiply">&#xb6;</a>
+			</h2>
+			<pre>func Multiply(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return product of two operands
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="NRoot">func <a href="/src/calculator/mathlib.go?s=1538:1602#L49">NRoot</a>
+				<a class="permalink" href="#NRoot">&#xb6;</a>
+			</h2>
+			<pre>func NRoot(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return a number used n times (second operand) in a multiplication
+gives first operand
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Plus">func <a href="/src/calculator/mathlib.go?s=126:189#L1">Plus</a>
+				<a class="permalink" href="#Plus">&#xb6;</a>
+			</h2>
+			<pre>func Plus(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return sum of two operands
+</p>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Power">func <a href="/src/calculator/mathlib.go?s=1333:1397#L43">Power</a>
+				<a class="permalink" href="#Power">&#xb6;</a>
+			</h2>
+			<pre>func Power(first_op <a href="/pkg/builtin/#float64">float64</a>, second_op <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Return first operand (base) taken to the power of
+the second_operand (exponent)
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="Calculator">type <a href="/src/calculator/calculator.go?s=75:155#L1">Calculator</a>
+				<a class="permalink" href="#Calculator">&#xb6;</a>
+			</h2>
+			<pre>type Calculator interface {
+    ClearAll()
+    Execute(<a href="/pkg/builtin/#float64">float64</a>)
+    Show()
+    GetResult()
+}</pre>
+			<p>
+Defines operations of calculator
+</p>
+
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SimpleCalc">type <a href="/src/calculator/calculator.go?s=343:446#L12">SimpleCalc</a>
+				<a class="permalink" href="#SimpleCalc">&#xb6;</a>
+			</h2>
+			<pre>type SimpleCalc struct {
+    OperationSlot func(<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#float64">float64</a>) (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+			<p>
+Stores structure containing current result and slot for operation to be performed
+</p>
+
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCalc">func <a href="/src/calculator/calculator.go?s=474:500#L18">NewCalc</a>
+					<a class="permalink" href="#NewCalc">&#xb6;</a>
+				</h3>
+				<pre>func NewCalc() *<a href="#SimpleCalc">SimpleCalc</a></pre>
+				<p>
+SimpleCalc constructor
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="SimpleCalc.ClearAll">func (*SimpleCalc) <a href="/src/calculator/calculator.go?s=648:679#L29">ClearAll</a>
+					<a class="permalink" href="#SimpleCalc.ClearAll">&#xb6;</a>
+				</h3>
+				<pre>func (c *<a href="#SimpleCalc">SimpleCalc</a>) ClearAll()</pre>
+				<p>
+Reset calculator to initial state
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SimpleCalc.Execute">func (*SimpleCalc) <a href="/src/calculator/calculator.go?s=780:825#L36">Execute</a>
+					<a class="permalink" href="#SimpleCalc.Execute">&#xb6;</a>
+				</h3>
+				<pre>func (c *<a href="#SimpleCalc">SimpleCalc</a>) Execute(operand <a href="/pkg/builtin/#float64">float64</a>)</pre>
+				<p>
+Executes selected Operation
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SimpleCalc.GetResult">func (*SimpleCalc) <a href="/src/calculator/calculator.go?s=1017:1066#L46">GetResult</a>
+					<a class="permalink" href="#SimpleCalc.GetResult">&#xb6;</a>
+				</h3>
+				<pre>func (c *<a href="#SimpleCalc">SimpleCalc</a>) GetResult() (<a href="/pkg/builtin/#float64">float64</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Returns current result and error code
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="SimpleCalc.Show">func (*SimpleCalc) <a href="/src/calculator/calculator.go?s=920:947#L41">Show</a>
+					<a class="permalink" href="#SimpleCalc.Show">&#xb6;</a>
+				</h3>
+				<pre>func (c *<a href="#SimpleCalc">SimpleCalc</a>) Show()</pre>
+				<p>
+Shows result
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.7.4.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="/doc/tos.html">Terms of Service</a> | 
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+<!-- TODO(adonovan): load these from <head> using "defer" attribute? -->
+<script type="text/javascript" src="/lib/godoc/jquery.js"></script>
+<script type="text/javascript" src="/lib/godoc/jquery.treeview.js"></script>
+<script type="text/javascript" src="/lib/godoc/jquery.treeview.edit.js"></script>
+
+
+<script>var goVersion = "go1.7.4";</script>
+<script type="text/javascript" src="/lib/godoc/godocs.js"></script>
+
+</body>
+</html>
+

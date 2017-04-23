@@ -2,10 +2,9 @@ package calculator
 
 import (
 	"fmt"
-	"mathlib"
 )
 
-// Calculator defines Operations of calculator
+// Defines operations of calculator
 type Calculator interface {
 	ClearAll()
 	Execute(float64)
@@ -13,12 +12,13 @@ type Calculator interface {
 	GetResult()
 }
 
+// Data structure to store result of calculation
 type result struct {
 	value float64
 	err   error
 }
 
-// Stores current result of equation and slot for selected operation
+// Stores structure containing current result and slot for operation to be performed
 type SimpleCalc struct {
 	result        result
 	OperationSlot func(float64, float64) (float64, error)
@@ -31,7 +31,7 @@ func NewCalc() *SimpleCalc {
 		value: 0,
 		err:   nil,
 	}
-	c.OperationSlot = mathlib.Plus
+	c.OperationSlot = Plus
 	return c
 }
 
@@ -39,7 +39,7 @@ func NewCalc() *SimpleCalc {
 func (c *SimpleCalc) ClearAll() {
 	c.result.value = 0
 	c.result.err = nil
-	c.OperationSlot = mathlib.Plus
+	c.OperationSlot = Plus
 }
 
 // Executes selected Operation
@@ -52,6 +52,7 @@ func (c *SimpleCalc) Show() {
 	fmt.Println(c.result)
 }
 
+// Returns current result and error code
 func (c *SimpleCalc) GetResult() (float64, error) {
 	return c.result.value, c.result.err
 }
