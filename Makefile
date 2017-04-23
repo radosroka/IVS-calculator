@@ -9,11 +9,11 @@ gtkbuild:
 
 build: gtkbuild
 	mkdir -p bin
-	$(goexport) cd bin/ && go build ../src/run-gui.go
+	$(goexport) cd bin/ && go build ../src/ivs-calc.go
 	$(goexport) cd bin/ && go build -gcflags '-N -l' ../src/proff.go
 
 run:
-	bin/run-gui
+	bin/ivs-calc
 
 pprof:
 	cat profiling/vstup.txt | nice -n 19 bin/proff 1000
