@@ -1,7 +1,7 @@
 version: '2'
 services:
   gui:
-    build: .
+    image: mcyprian/ivs-calculator
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
