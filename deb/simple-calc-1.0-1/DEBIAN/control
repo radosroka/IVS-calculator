@@ -1,0 +1,9 @@
+Package: simple-calc
+Version: 1.0-1
+Section: base
+Priority: optional
+Architecture: i384
+Depends: golang-go, golang-doc, golang-go.tools, libpango1.0, libgdk-pixbuf2.0-dev, libgtk2.0-dev
+Maintainer: Radovan Sroka
+Description: Simple calc
+ IVS2017

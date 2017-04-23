@@ -19,6 +19,14 @@ pprof:
 	cat profiling/vstup.txt | nice -n 19 bin/proff 1000
 	go tool pprof bin/proff profiling/cpu.pprof
 
+deb:
+	mkdir -p deb/simple-calc-1.0-1/usr/local/bin
+	cd deb && dpkg-deb --build simple-calc-1.0-1
+	mv deb/simple-calc-1.0-1.deb ./
+
+deb-install: build deb
+	sudo apt install simple-calc-1.0-1.deb
+
 documentation:
 	mkdir -p doc
 	$(goexport) godoc -url=/pkg/calculator > doc/calc.html
@@ -26,7 +34,7 @@ documentation:
 
 clean:
 	go clean
-	rm -rf bin/* profiling/cpu.proff doc/*
+	rm -rf bin/* profiling/cpu.proff doc/* *.deb
 
 clean-all: clean
 	rm -rf pkg src/github.com
