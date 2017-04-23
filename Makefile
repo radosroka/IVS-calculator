@@ -20,6 +20,9 @@ build: gtkbuild
 run:
 	bin/ivs-calc
 
+test:
+	$(goexport) go test calculator
+
 pprof:
 	cat profiling/vstup.txt | nice -n 19 bin/proff 1000
 	go tool pprof bin/proff profiling/cpu.pprof
@@ -33,7 +36,7 @@ deb-build: build
 deb-install: deb-build
 	sudo apt -f install ivs-calc-1.0-1.deb
 
-deb-uninstall: 
+deb-uninstall:
 	sudo apt remove ivs-calc
 
 rpm-build: rpm-archive
@@ -67,4 +70,3 @@ clean:
 
 clean-all: clean
 	rm -rf pkg src/github.com *.deb *.rpm IVS-calculator-1.1.tar.gz
-	
