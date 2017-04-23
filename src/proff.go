@@ -7,16 +7,17 @@ import (
 	"os"
 	"runtime"
 	"strconv"
-	//"time"
+	"time"
 )
 
 const MAX = 1000
 
 func main() {
-	runtime.SetCPUProfileRate(1000)
-	profile.Start(profile.CPUProfile, profile.ProfilePath(".")).Stop()
-
-	var array [MAX]float64
+	time.Sleep(time.Second*2)
+	fmt.Println("Starting profile...")
+	runtime.SetCPUProfileRate(10000000000)
+	p := profile.Start(profile.CPUProfile, profile.ProfilePath("./profiling/"))
+	var array[MAX] float64
 
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, "Bad arguments\n")
@@ -27,9 +28,7 @@ func main() {
 
 	for i := 0; i < N && i < MAX; i++ {
 		fmt.Scanf("%f", &array[i])
-		//		fmt.Printf("%d\n", array[i])
 	}
-
 	var res float64 = 0.0
 	var mean float64 = 0.0
 
@@ -48,7 +47,6 @@ func main() {
 		res = ress
 	}
 
-	//	time.Sleep(10000000000)
-
 	fmt.Printf("Deviation is -- %v\n", res)
+	p.Stop()
 }

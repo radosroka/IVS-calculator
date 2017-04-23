@@ -4,20 +4,20 @@ goexport=export GOPATH=$(pwd);
 all: build documentation
 
 gtkbuild:
-	$(goexport) go get github.com/mattn/go-gtk/gtk || true
+	$(goexport) go get github.com/radosroka/go-gtk/gtk || true
 	$(goexport) go get github.com/pkg/profile || true
 
 build: gtkbuild
 	mkdir -p bin
 	$(goexport) cd bin/ && go build ../src/run-gui.go
-	$(goexport) cd bin/ && go build ../src/proff.go
+	$(goexport) cd bin/ && go build -gcflags '-N -l' ../src/proff.go
 
 run:
 	bin/run-gui
 
 pprof:
-	cat numbers | bin/proff 1000
-	go tool pprof bin/proff cpu.pprof
+	cat profiling/vstup.txt | nice -n 19 bin/proff 1000
+	go tool pprof bin/proff profiling/cpu.pprof
 
 documentation:
 	mkdir -p doc
@@ -26,7 +26,7 @@ documentation:
 
 clean:
 	go clean
-	rm -rf bin/* doc/*
+	rm -rf bin/* profiling/cpu.proff doc/*
 
 clean-all: clean
 	rm -rf pkg src/github.com

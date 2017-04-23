@@ -2,7 +2,7 @@ package gui
 
 import (
 	"calculator"
-	gtk "github.com/mattn/go-gtk/gtk"
+	gtk "github.com/radosroka/go-gtk/gtk"
 	"strconv"
 	"strings"
 )

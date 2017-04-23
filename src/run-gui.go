@@ -2,8 +2,8 @@ package main
 
 import (
 	"calculator"
-	gdk "github.com/mattn/go-gtk/gdk"
-	gtk "github.com/mattn/go-gtk/gtk"
+	gdk "github.com/radosroka/go-gtk/gdk"
+	gtk "github.com/radosroka/go-gtk/gtk"
 	"gui"
 	"os"
 	"strings"
