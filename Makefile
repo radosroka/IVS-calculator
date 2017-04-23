@@ -19,6 +19,18 @@ pprof:
 	cat profiling/vstup.txt | nice -n 19 bin/proff 1000
 	go tool pprof bin/proff profiling/cpu.pprof
 
+deb-build: build
+	mkdir -p deb/ivs-calc-1.0-1/usr/local/bin
+	cp bin/ivs-calc	deb/ivs-calc-1.0-1/usr/local/bin/
+	cd deb && dpkg-deb --build ivs-calc-1.0-1
+	mv deb/ivs-calc-1.0-1.deb ./
+
+deb-install: deb-build
+	sudo dpkg -i ivs-calc-1.0-1.deb
+
+deb-uninstall: 
+	sudo apt remove ivs-calc
+
 documentation:
 	mkdir -p doc
 	$(goexport) godoc -url=/pkg/calculator > doc/calc.html
@@ -26,7 +38,7 @@ documentation:
 
 clean:
 	go clean
-	rm -rf bin/* profiling/cpu.proff doc/*
+	rm -rf bin/* profiling/cpu.proff deb/ivs-calc-1.0-1/usr/local/bin/ivs-calc
 
 clean-all: clean
 	rm -rf pkg src/github.com
