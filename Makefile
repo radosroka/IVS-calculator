@@ -26,6 +26,10 @@ RPM_DIRS = --define "_sourcedir `pwd`" \
        --define "_builddir `pwd`" \
        --define "_srcrpmdir `pwd`"
 
+files=$(shell ls)
+files += .git
+
+
 all: build doc
 
 gtkbuild:
@@ -87,8 +91,19 @@ doc:
 	$(goexport) godoc -url=/pkg/gui | wkhtmltopdf - doc/doc-gui.pdf 2>/dev/null || true
 	pdfunite doc/* dokumentace.pdf
 
+pack: all deb-build
+	mkdir -p xsroka00_xsykor25_xcypri01_xmochn00
+	mkdir -p xsroka00_xsykor25_xcypri01_xmochn00/repo
+	cp -r $(files) xsroka00_xsykor25_xcypri01_xmochn00/repo/
+	cp dokumentace.pdf doc/dokumentace.pdf
+	cp -r doc/ xsroka00_xsykor25_xcypri01_xmochn00/doc
+	mkdir -p xsroka00_xsykor25_xcypri01_xmochn00/install
+	cp *.deb xsroka00_xsykor25_xcypri01_xmochn00/install/
+	zip -r xsroka00_xsykor25_xcypri01_xmochn00.zip xsroka00_xsykor25_xcypri01_xmochn00
+	rm -rf xsroka00_xsykor25_xcypri01_xmochn00 doc/dokumentace.pdf
+
 clean:
 	go clean
-	rm -rf bin/* profiling/cpu.proff deb/ivs-calc-1.0-1/usr/local/bin/ivs-calc doc/
+	rm -rf bin profiling/cpu.proff deb/ivs-calc-1.0-1/usr/local/bin/ivs-calc doc/
 	rm -rf pkg x86_64 src/github.com *.deb *.rpm IVS-calculator-1.1.tar.gz
-	rm -rf dokumentace.pdf
+	rm -rf dokumentace.pdf xsroka00_xsykor25_xcypri01_xmochn00/ xsroka00_xsykor25_xcypri01_xmochn00.zip
