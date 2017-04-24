@@ -6,7 +6,7 @@ Ubuntu 64bit
 Autori
 ------
 
-Nazev tymu
+Nazev tymu: 9
 - xsroka00 Radovan Sroka 
 - xcypri01 Michal Cyprián
 - xsykor25 Tomáš Sýkora 
@@ -15,7 +15,7 @@ Nazev tymu
 Licence
 -------
 
-GPL3
+Tento program je poskytovaný pod licenciou GPLv3
 
 Dependence(Ubuntu)
 ----------

@@ -31,7 +31,7 @@ import (
 
 var (
 	nums      = "789/!456x%123-^0.=+√"
-	operators = "/!x%-^+=\u221a√"
+	operators = "/!x%-^+=\u221a"
 )
 
 func main() {
@@ -83,9 +83,8 @@ func main() {
 				b = gtk.NewButtonWithLabel(string("\u221a"))
 				b.SetSizeRequest(35, 35)
 			}
-			if strings.Compare(b.GetLabel(), "!") == 0 {
-				b.Clicked(gui.SpecialButtonClicked(b, calc), nil)
-			} else if strings.Index(operators, string(nums[i*5+j])) != -1 {
+			if strings.Index(operators, string(nums[i*5+j])) != -1 ||
+				int(nums[i*5+j]) == 226 {
 				b.Clicked(gui.OperatorButtonClicked(b, calc), nil)
 			} else {
 				b.Clicked(gui.InputButtonClicked(b, calc), nil)
