@@ -24,6 +24,7 @@ BuildRequires:  golang-godoc
 BuildRequires:  git
 BuildRequires:  gtk2-devel
 BuildRequires:  pango-devel
+BuildRequires:  rpm-build
 
 Requires: libcanberra-gtk2
 Requires: PackageKit-gtk3-module
