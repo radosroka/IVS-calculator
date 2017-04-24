@@ -26,7 +26,7 @@ RPM_DIRS = --define "_sourcedir `pwd`" \
        --define "_builddir `pwd`" \
        --define "_srcrpmdir `pwd`"
 
-all: build documentation
+all: build doc
 
 gtkbuild:
 	$(goexport) go get github.com/radosroka/go-gtk/gtk || true
@@ -77,18 +77,18 @@ docker-build: rpm-build
 	docker-compose build
 
 docker-run:
-	sudo setenforce 0
+	sudo setenforce 0 || true
 	sudo xhost local:root
-	docker-compose up
+	sudo docker-compose up
 
-documentation:
+doc:
 	mkdir -p doc
-	$(goexport) godoc -url=/pkg/calculator > doc/calc.html
-	$(goexport) godoc -url=/pkg/gui > doc/gui.html
+	$(goexport) godoc -url=/pkg/calculator | wkhtmltopdf - doc/doc-calc.pdf 2>/dev/null || true
+	$(goexport) godoc -url=/pkg/gui | wkhtmltopdf - doc/doc-gui.pdf 2>/dev/null || true
+	pdfunite doc/* dokumentace.pdf
 
 clean:
 	go clean
-	rm -rf bin/* profiling/cpu.proff deb/ivs-calc-1.0-1/usr/local/bin/ivs-calc
-
-clean-all: clean
+	rm -rf bin/* profiling/cpu.proff deb/ivs-calc-1.0-1/usr/local/bin/ivs-calc doc/
 	rm -rf pkg x86_64 src/github.com *.deb *.rpm IVS-calculator-1.1.tar.gz
+	rm -rf dokumentace.pdf
