@@ -40,6 +40,7 @@ deb-uninstall:
 	sudo apt remove ivs-calc
 
 rpm-build: rpm-archive
+	sudo dnf -y install golang golang-godoc gtk2-devel pango-devel
 	rpmbuild $(RPM_DIRS) -ba rpm/golang-ivs-calculator.spec
 
 rpm-install: rpm-build
@@ -47,6 +48,10 @@ rpm-install: rpm-build
 
 rpm-uninstall:
 	sudo dnf remove -y golang-ivs-calculator
+
+rpm-archive:
+	git archive --format=tar --prefix=IVS-calculator-1.1/ v1.1 | gzip > IVS-calculator-1.1.tar.gz
+
 
 docker-build: rpm-build
 	docker-compose build
@@ -60,9 +65,6 @@ documentation:
 	mkdir -p doc
 	$(goexport) godoc -url=/pkg/calculator > doc/calc.html
 	$(goexport) godoc -url=/pkg/gui > doc/gui.html
-
-rpm-archive:
-	git archive --format=tar --prefix=IVS-calculator-1.1/ v1.1 | gzip > IVS-calculator-1.1.tar.gz
 
 clean:
 	go clean
