@@ -1,0 +1,22 @@
+Prvou záležitosťou, kde za skutočnosť líšila od očakávaní bol návrh rozhrania, rozdelenie
+funkcionality do modulov a definícia rozhraní. Našou predstavou bolo, že sa nám pomerne
+jednoduchú aplikáciu ako je kalkulačka podarí presne navrhnúť a budeme môcť aplikovať
+vývoj riadený testami.
+
+Základné rysy rozhrania sa nám navrhnúť podarilo, avšak v ďalších fázach vývoja, keď bolo
+potrebné integrovať logiku kalkulačky do grafického rozhrania sme boli nútený návrh 
+upraviť. Matematické operácie sme úplne oddelili od logiky a vytvorili nový modul. 
+Po zmene návrhu sme museli upraviť aj testy.
+
+Na implementáciu projektu sme sa rozhodli použiť relatívne mladý jazyk Golang. Sľubovali 
+sme si od neho jednoduchú syntax a moderné knižnice. Počas práce na projekte nás 
+zaskočilo niekoľko pomerne nekonvenčných riešení, ktoré tento jazyk využíva a menšie 
+množstvo zdrojov a diskusných fór ako je to v prípade jazykov C, C++ alebo Python.
+
+Problémy sa vyskytli aj vo výbere frameworku pre grafické rozhranie, pôvodným plánom bolo
+využiť Qt. Po prvých pokusoch o implementáciu sa vyskytlo množstvo problémov, preto sme 
+bJoli nútení zmeniť tento plán a implementovať túto časť aplikácie s využitím frameforku GTK.
+
+Naše plány sa výrazne nezhodovali so skutočnosťou z hľadiska časového plánu. K finálnej
+verzii kódu sme sa dopracovali pomerne neskoro a preto sme dokončovali inštalátory
+a príručku v priebehu posledných dní a hodín pred odovzdaním.
