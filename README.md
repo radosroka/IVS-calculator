@@ -16,3 +16,15 @@ Licence
 -------
 
 GPL3
+
+Dependence(Ubuntu)
+----------
+
+golang-go
+golang-doc
+golang-go.tools
+libpango1.0-dev
+libgdk-pixbuf2.0-dev
+libgtk2.0-dev
+pdfunite
+wkhtmltopdf
