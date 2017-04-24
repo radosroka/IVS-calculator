@@ -27,7 +27,7 @@ RPM_DIRS = --define "_sourcedir `pwd`" \
        --define "_srcrpmdir `pwd`"
 
 files=$(shell ls)
-files += .git
+files += .git .gitignore
 
 
 all: build doc
