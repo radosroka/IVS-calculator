@@ -34,7 +34,7 @@ deb-build: build
 	mv deb/ivs-calc-1.0-1.deb ./
 
 deb-install: deb-build
-	sudo apt -f install ivs-calc-1.0-1.deb
+	sudo apt -f install ./ivs-calc-1.0-1.deb
 
 deb-uninstall:
 	sudo apt remove ivs-calc
